@@ -174,7 +174,9 @@ export default class BasicForm {
     }
 
     removeByIds(ids/*:Array<string>*/) {
-        this.summaryModel = this.summaryModel.filter(elem => this.indexOf(elem.id) < 0, ids);
+        this.summaryModel = this.summaryModel.filter(elem => {
+            return this.indexOf(elem.id) < 0   ;
+        }, ids);
 
         // _.remove(this.summaryModel, (sd) => {
         //     return _.findIndex(ids, (id) => {

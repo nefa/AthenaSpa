@@ -13,13 +13,10 @@ class WestenReceive extends BasicForm {
         this.$scope = $scope;
         this.$filter = $filter;
 
-        this.onSelectAccount.bind(this);
+        // this.onSelectAccount.
 
         this.dropdownApi = {
-        	onSelect: (account) => {
-        		console.log("account:", account);
-        		this.onSelectAccount(account);
-        	}
+        	onSelect: this.onSelectAccount.bind(this)
         }
     }
 
@@ -27,8 +24,6 @@ class WestenReceive extends BasicForm {
         this.$scope.$on('RESET_FORM', () => {
             this.onReset(/*special conditions*/);
         })
-
-        console.log("this.$scope, this.$filter:", this.$scope, this.$filter)
 
         this.amount_currency = new AmountCurrency(/*generates default empty currency model*/)
         //@input
@@ -48,7 +43,6 @@ class WestenReceive extends BasicForm {
     }
 
     onSelectAccount(account) {
-    	console.log("this, account:", this, account);
         this.selectedAccount = this.accounts.filter(acc => account.id == acc.id)[0];
 
         const {name, nickname, IBAN} = this.selectedAccount;
