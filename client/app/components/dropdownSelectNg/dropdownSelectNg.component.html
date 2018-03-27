@@ -1,0 +1,22 @@
+<div class="dropdown"
+	ng-class="{'open': !ds.isCollapsed}">
+	<div class="input-group">
+	  <!-- <span class="input-group-addon">@</span> -->
+	  <input type="text" class="form-control" placeholder="Username" 
+	  	ng-click="ds.isCollapsed = !ds.isCollapsed"
+	  	ng-model="ds.inputModel"
+	  	>
+	</div>
+  <ul class="dropdown-menu" role="menu">
+  	<li role="presentation"
+  		ng-repeat="item in ds.list | filter:ds.inputModel track by item.id">
+  		<a role="menuitem" tabindex="-1" href="#"
+  			ng-click="ds.onSelectItem(item);ds.isCollapsed = true">
+	  		<span>{{item.id}}</span> | 
+	  		<span>{{item.iban}}</span> |
+	  		<span>{{item.name}}</span>
+  		</a>
+	</li>
+  </ul>
+</div>
+
